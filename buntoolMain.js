@@ -11,6 +11,18 @@ import {
   setMetadata,
 } from './buntoolFunctions.js';
 
+import { processTheBundle } from './buntoolMain.js';
+import Config from './buntoolConfig.js';
+
+const config = new Config();
+const filesMap = new Map(); // filename -> File object
+const indexData = [
+  { filename: 'doc1.pdf', title: 'Claim Form', date: '2024-01-15', pageCount: 3 },
+  { filename: 'doc2.pdf', title: 'Defence', date: '2024-02-20', pageCount: 5 },
+];
+
+const pdfBytes = await processTheBundle(filesMap, indexData, config);
+
 /**
  * Function to process the bundle of PDFs according to the provided configuration.
  * @param {*} filesMap 
